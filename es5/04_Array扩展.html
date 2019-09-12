@@ -21,6 +21,29 @@
    4. 根据arr产生一个新数组,要求新数组中的每个元素都比原来大10(加工数组)
    5. 根据arr产生一个新数组,要求数组里的元素都是大于4的(过滤数组)
    */
+  
+  var arr = [1,2,4,3,5,6,6,7,8,6,8,7,9,0]
+  
+  console.log(arr.indexOf(6))//5
+  console.log(arr.lastIndexOf(6))//9
+  
+  var arr2 = []
+  arr.forEach(function (item,index,arr) {
+    arr2.push(item+10)
+    //console.log(item,index,arr)
+  })
+  
+  var result = arr.map(function (item,index,arr) {
+    return item+10
+  })
+  console.log(result)
+  
+  var result2 = arr.filter(function (item,index,arr) {
+    return item>4
+  })
+  console.log(result2)
+  
+  
 
 </script>
 </body>

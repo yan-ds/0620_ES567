@@ -11,10 +11,18 @@
 2. 面试题: 区别bind()与call()和apply()?
   * 都能指定函数中的this
   * call()/apply()是立即调用函数
-  * bind()是将函数返回
+  * bind()是将新的函数返回
   * call()和apply()传参有区别
 -->
 <script type="text/javascript">
+  
+  function demo() {
+    var a = 1
+    console.log(this)
+  }
+  var demo2 = demo.bind({m:1,n:2})
+  demo2()
+  console.log(demo === demo2)
 
 </script>
 </body>
