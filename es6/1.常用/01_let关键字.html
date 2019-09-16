@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>01_let关键字</title>
+</head>
+<body>
+<button id="btn1">按钮1</button>
+<button id="btn2">按钮2</button>
+<button id="btn3">按钮3</button>
+<!--
+ let
+1. 作用:
+  * 与var类似, 用于声明一个变量
+2. 特点:
+  * 在块级作用域内有效
+  * 变量不能重复声明
+  * 如果用var定义变量则存在变量提升，(1.先定义；2.随后赋值undefined)
+  * 如果用let定义变量也有变量提升！！！，但是提升后没初始化（js中如果一个变量的值没有经过初始化，是不能用的）
+      简单记忆：【let声明的变量，在声明语句之前不可用】
+3. 应用:
+  * 循环遍历加监听
+  * 使用let取代var是趋势
+-->
+<script type="text/javascript">
+  //1.在块级作用域内有效
+  /*var a = 1
+  if(a === 1){
+    let b = 2
+  }
+  console.log(a)//1
+  console.log(b)//报错*/
+  
+  //2.变量不能重复声明
+  /*let a = 1
+  let a = 1
+  console.log(a)*/
+  
+  //3.let声明的变量，在声明语句之前不可用
+  /*console.log(a);
+  var a = 1;*/
+  
+  //4.let定义的变量，不在window上，但是我们可以“找到”
+  debugger;
+  let a = 1
+  console.log(window.a)//undefined
+  
+  
+  //循环遍历加监听的问题
+  /*var btns = document.querySelectorAll('button')
+  //如下代码有问题，当点击的时候输出的都是3
+  /!*for (var i=0; i<btns.length; i++ ){
+    var item = btns[i]
+    item.onclick = function () {
+      console.log(i)
+    }
+  }*!/
+
+  //第一种解决办法：用let关键字
+  for (let i=0; i<btns.length; i++ ){
+    var item = btns[i]
+    item.onclick = function () {
+      console.log(i)
+    }
+  }
+  
+  //第二种解决办法：缓存计数器
+  /!*for (var i=0; i<btns.length; i++ ){
+    var item = btns[i]
+    item.index = i
+    item.onclick = function () {
+      console.log(this.index)
+    }
+  }*!/
+  
+  //第三种解决办法：利用闭包
+  /!*for (var i=0; i<btns.length; i++ ){
+    var item = btns[i]
+    ;(function (i) {
+      item.onclick = function () {
+        console.log(i)
+      }
+    })(i)
+  }*!/*/
+  
+  
+</script>
+</body>
+
+</html>
