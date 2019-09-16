@@ -23,7 +23,8 @@
 -->
 <script type="text/javascript">
   
-  var student = {
+  // 1. Object.create(prototype, descriptors)
+  /*var student = {
     school:'尚硅谷大学'
   }
   
@@ -36,13 +37,12 @@
       enumerable:true//是否能用for in 枚举
     }
   })
-  /*s.name = 'wade'
+  s.name = 'wade'
   delete s.name
   console.log(s.name)
   console.log(s.school)*/
-  
  
- //回顾for in枚举-----不仅可以枚举出自身上的属性，还可以枚举出编码人员在其构造函数原型对象上追加的属性
+  //回顾for in枚举-----不仅可以枚举出自身上的属性，还可以枚举出编码人员在其构造函数原型对象上追加的属性
   /*function Person(name,age) {
     this.name = name
     this.age = age
@@ -60,6 +60,52 @@
   for (var key in p){
      console.log(p[key])
   }*/
+  
+  //2.Object.defineProperties
+  var person = {
+    firstName:'张',
+    lastName:'三',
+    sex:'男',
+  }
+  
+  Object.defineProperties(person,{
+    fullName:{
+      //当读取person上的fullName属性时，会触发get方法
+      get:function () {
+        console.log('有人读取了person身上的fullName')
+        return this.firstName + ' ' + this.lastName
+      },
+      //当修改person上的fullName属性时，会触发set方法
+      set:function (data) {
+        console.log('有人修改了person身上的fullName')
+        var nameArr = data.split(' ')
+        this.firstName = nameArr[0]
+        this.lastName = nameArr[1]
+      }
+    },
+    /*sex:{
+      //读sex的时掉调用get
+      get:function () {
+        return '女'
+      },
+      //改sex的时掉调用get
+      set:function (data) {
+        this.sex = data
+      }
+    }*/
+  })
+  
+  /*console.log(person.fullName)//张 三
+  person.firstName = '李'
+  person.lastName = '四'
+  person.fullName = '王 五'
+  console.log(person.firstName)
+  console.log(person.lastName)*/
+  person.sex = '不男不女'
+  console.log(person.sex)
+  
+  
+  
   
 
 </script>
