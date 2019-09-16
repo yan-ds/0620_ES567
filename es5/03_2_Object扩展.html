@@ -15,19 +15,24 @@
 
   var person = {
     firstName:'张',
-    secondName:'三',
+    lastName:'三',
+    sex:'男',
     get fullName(){
-      return this.firstName + ' '+person.secondName
+      return this.firstName + ' ' + this.lastName
     },
     set fullName(data){
       var nameArr = data.split(' ')
-      this.firstName = nameArr[0]
-      this.secondName = nameArr[1]
+      this.firstName =nameArr[0]
+      this.lastName =nameArr[1]
     }
   }
+  
+  console.log(person)
+  person.firstName = '李'
   person.fullName = '王 五'
-  person.firstName = '汴'
-  console.log(person.fullName)
+  console.log(person.firstName)
+  console.log(person.lastName)
+ 
 
 </script>
 </body>
