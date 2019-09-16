@@ -22,6 +22,48 @@
         * 存取器：setter,getter一个用来存值，一个用来取值
 -->
 <script type="text/javascript">
+  
+  var student = {
+    school:'尚硅谷大学'
+  }
+  
+  
+  var s = Object.create(student,{
+    name:{
+      value:'kobe',
+      writable:true,//值是否是可修改的
+      configurable:true,//属性是否可以被删除
+      enumerable:true//是否能用for in 枚举
+    }
+  })
+  /*s.name = 'wade'
+  delete s.name
+  console.log(s.name)
+  console.log(s.school)*/
+  
+  for (let key in s){
+     console.log(s[key])
+  }
+ 
+ //回顾for in枚举-----不仅可以枚举出自身上的属性，还可以枚举出编码人员在其构造函数原型对象上追加的属性
+  /*function Person(name,age) {
+    this.name = name
+    this.age = age
+  }
+  
+  Person.prototype.speak = function () {
+    console.log(this.name,this.age)
+  }
+ Person.prototype.study = function () {
+   console.log(this.name,this.age)
+ }
+  
+  var p = new Person('kobe',18)
+ 
+  for (var key in p){
+     console.log(p[key])
+  }*/
+  
 
 </script>
 </body>
