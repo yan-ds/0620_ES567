@@ -10,7 +10,7 @@
 1. 理解:
   * Promise对象: 代表了未来某个将要发生的事件(通常是一个异步操作)
   * 有了promise对象, 可以将异步操作以同步的流程表达出来, 避免了层层嵌套的回调函数(俗称'回调地狱')
-  * ES6的Promise是一个构造函数, 用来生成promise实例
+  * ES6的Promise是一个构造函数, 用来生成Promise实例
   
 2. 使用promise基本步骤(共分为2步):
       1.创建promise对象
@@ -49,18 +49,15 @@
 -->
 
 <script type="text/javascript">
-  //回调地狱
-  
-  var btn = document.getElementById('btn')
+  //演示回调地狱
+   /*var btn = document.getElementById('btn')
   btn.onclick = ()=>{
-    
-    /*需求：
+    /!*需求：
       有4次请求，要求如下：
           第1次请求的数据回来后，再发送第2次；
           第2次请求的数据回来后，再发送第3次；
           第3次请求的数据回来后，再发送第4次；
-    */
-    
+    *!/
     //如下代码中层层嵌套的回调函数就叫做“回调地狱”
     //发送第1次请求
     sendAjax(1,function(a){
@@ -86,7 +83,26 @@
     setTimeout(function () {
       fn(`我是第${id}次请求回来的数据`)
     },1000)
-  }
+  }*/
+  
+  //创建了一个Promise实例-------它是一个状态机(三种状态：初始化:pending、成功:resolved、失败:rejected)
+  let myPromise = new Promise(function (resolve,reject) {
+    setTimeout(function () {
+      reject('由于xxx原因，请求出错了，错误代码为0001')
+    },2000)
+  })
+  
+  myPromise.then(function(data){
+    console.log('我成功了',data)
+  },function(err){
+    console.log('我失败了',err)
+  })
+  
+  
+  
+  
+  
+  
   
   
 </script>
