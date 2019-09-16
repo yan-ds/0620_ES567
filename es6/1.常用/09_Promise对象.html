@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>11_Promise对象</title>
+</head>
+<body>
+<button id="btn">按钮</button>
+<!--
+1. 理解:
+  * Promise对象: 代表了未来某个将要发生的事件(通常是一个异步操作)
+  * 有了promise对象, 可以将异步操作以同步的流程表达出来, 避免了层层嵌套的回调函数(俗称'回调地狱')
+  * ES6的Promise是一个构造函数, 用来生成promise实例
+  
+2. 使用promise基本步骤(共分为2步):
+      1.创建promise对象
+      2.监测promise对象的状态（默认、成功、失败）
+      
+  * 创建promise对象
+    let promise = new Promise((resolve, reject) => {
+      //初始化promise状态为 pending
+      //执行异步操作
+      if(异步操作成功) {
+        resolve(value);//修改promise的状态为fullfilled
+      } else {
+        reject(errMsg);//修改promise的状态为rejected
+      }
+    })
+    
+  * 第一种：调用promise的then()
+    promise.then(function(
+      result => console.log(result),
+      errorMsg => alert(errorMsg)
+    ))
+    
+  * 第二种：调用promise的then()与.catch() --------  用的不多
+    promise.then(function(
+      result => console.log(result),
+      errorMsg => alert(errorMsg)
+    ))
+  
+3. promise实例对象的3个状态
+  * pending: 初始化状态
+  * resolved: 成功状态
+  * rejected: 失败状态
+  
+4. 应用:
+  * 使用promise封装处理ajax请求
+-->
+
+<script type="text/javascript">
+  //回调地狱
+  
+  var btn = document.getElementById('btn')
+  btn.onclick = ()=>{
+    
+    //如下代码就叫做“回调地狱”
+    //发送第一次请求
+    sendAjax(1,function(a){
+      console.log(a)
+      //发送第一次请求
+      sendAjax(2,function(a){
+        console.log(a)
+        //发送第一次请求
+        sendAjax(3,function(a){
+          console.log(a)
+          //发送第一次请求
+          sendAjax(4,function(a){
+            console.log(a)
+          })
+        })
+      })
+    })
+    
+  }
+  
+  
+  //模拟发送Ajax请求
+  function sendAjax(id,fn) {
+    setTimeout(function () {
+      fn(`我是第${id}次请求回来的数据`)
+    },1000)
+  }
+  
+  
+</script>
+</body>
+</html>

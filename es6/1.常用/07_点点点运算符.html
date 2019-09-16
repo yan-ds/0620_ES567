@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>07_3点运算符</title>
+</head>
+<body>
+<!--
+* 用途
+1. 用来取代arguments 但比 arguments 灵活
+2. 作为扩展运算符使用
+3. 遍历数组
+4. 复制数组
+
+备注：点点点运算：1.打包 2.解包
+
+-->
+<script type="text/javascript">
+  
+  //1.用来取代arguments
+  /*function demo(...params) {
+    //arguments用于收集所有实参形成一个数组（伪数组），但是“不是很干净”，
+    /!*console.log(arguments)
+    arguments.forEach((item,index)=>{
+      
+    })*!/
+    console.log(params)
+    //用来取代arguments 但比 arguments 灵活
+    params.forEach((item,index)=>{
+      console.log(item)
+    })
+  }
+  demo(1,2,3,4,5,6)*/
+  
+  //2.作为扩展运算符使用
+  /*let arr1 = [4,5,6]
+  let arr2 = [1,2,3,...arr1,7,8,9]
+  console.log(arr1)
+  console.log(arr2)*/
+  
+  //3.遍历数组
+  /*let arr3 = ['atguigu',1,true]
+  console.log(arr3)
+  console.log(...arr3)//遍历*/
+  
+  //4.复制数组
+  /*let arr4 = [1,3,5,7,9]
+  let arr5 = [...arr4]
+  arr4[0] = 'a'
+  console.log(arr5)*/
+  
+  //注意点一：对象不可以用三点运算符
+  let obj = {m:1,n:2}
+  //console.log(obj)
+  console.log(...obj)
+  
+  //如下写法是ES8提出来的新写法-------用于复制一个对象
+  let obj2 = {...obj}
+  console.log(obj)
+  console.log(obj2)
+  console.log(obj === obj2)
+</script>
+</body>
+</html>
