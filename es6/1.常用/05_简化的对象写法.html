@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>05_简化的对象写法</title>
+</head>
+<body>
+<!--
+简化的对象写法
+* 省略同名的属性值
+* 省略方法的function（注意是对象里方法的function）
+-->
+<script type="text/javascript">
+  
+  let name = 'kobe'
+  let age = 18
+  let sex = '男'
+  
+  let person = {
+    name,
+    age,
+    sex,
+    speak() {
+      console.log('我是人，我能说话')
+    }
+  }
+  console.log(person)
+  person.speak()
+  //{name:'kobe',age:18}
+
+</script>
+</body>
+</html>

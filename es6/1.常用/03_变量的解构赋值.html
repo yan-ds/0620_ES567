@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>03_变量的解构赋值</title>
+</head>
+<body>
+<!--
+1. 理解: 解构赋值=解构+赋值
+  * 从对象或数组中提取数据, 并赋值给变量(可能是多个)
+  * 何为解构：打开一个对象或者数组的结构
+  
+2. 对象的解构赋值
+  let {n, a} = {n:'tom', a:12}
+  
+3. 数组的解构赋值
+  let [a,b] = [1, 'hello'];
+  
+4. 用途
+  * 给多个形参赋值
+-->
+<script type="text/javascript">
+  
+  //1.对象的解构赋值
+  let person = {name:'kobe',age:18}
+  console.log(person.name,person.age)//传统写法
+  let {name,age} = person//解构赋值----等价于下面两行的写法
+  //let name = person.name
+  //let age = person.age
+  console.log(name,age)
+  
+  //2.数组的解构赋值
+  let arr = [2,4,6,8];
+  let [a,b,c,d] = arr //数组的解构赋值，等价于下面四行的写法
+  /*let a = arr[0]
+  let b = arr[1]
+  let c = arr[2]
+  let d = arr[3]*/
+  console.log(a,b,c,d)
+  let [,,x] =  arr
+  console.log(x)
+  
+  //3.应用：传参
+  function demo({name,age}) {
+    console.log(age)
+  }
+  demo(person)
+  
+
+</script>
+</body>
+</html>

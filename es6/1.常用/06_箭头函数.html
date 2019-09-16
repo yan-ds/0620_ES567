@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>06_箭头函数</title>
+
+</head>
+<body>
+<button id="btn">点我吧</button>
+<!--
+* 箭头函数：
+  * 作用: 常用于定义匿名函数（也可以定义正常函数）
+  * 基本语法:
+        1.一个参数: i => i+2
+        2.没有参数: () => console.log('xxxx')
+        3.大于一个参数: (i,j) => i+j
+  * 关于函数体需要注意的：
+        1.如果函数体只有一行，函数体可以不用大括号，同时默认return这行语句的执行结果。
+        2.函数体如果有多个语句, 则需要用{}包围，但不会自动return，需要手动return。
+        
+* 使用场景: 多用来定义回调函数
+
+* 箭头函数的特点：
+    1、简洁
+    2、箭头函数没有自己的this，箭头函数的this不是调用的时候决定的，而是在定义的时候。
+    3、扩展理解：箭头函数的this看外层的是否有函数，
+        如果有，外层函数的this就是内部箭头函数的this，
+        如果没有，则this是window。
+    4、箭头函数不能用于定义构造函数，因为没有自己的this,而且没有自己的原型对象
+-->
+<script type="text/javascript">
+  
+  //普通方法定义一个函数，名字为demo
+  /*function demo(a) {
+    console.log(a)
+  }
+  demo(1)*/
+  
+  //箭头函数的方式去定义一个函数
+  /*let demo = (a)=> {
+    console.log(a)
+  }
+  demo(1)*/
+  
+  //箭头左侧----如果只有一个参数，可以省略()
+  /*let demo = a => {
+    console.log(a)
+  }
+  demo(1)*/
+
+  //箭头左侧----如果有一个以上参数，不可以省略()
+  /*let demo = (a,b) => {
+    console.log(a,b)
+  }
+  demo(1,2)*/
+
+  //箭头左侧----如果没有参数，不可以省略()
+  /*let demo = () => {
+    console.log(a,b)
+  }
+  demo(1,2)*/
+
+  //箭头右侧----如果函数体，只有一行，则可以省略{}，一旦省略了{}，自动return该行的执行结果
+  /*let demo = a => a+1
+  let result = demo(1)
+  console.log(result)*/
+
+  //箭头右侧----如果函数体，一行以上，不可以省略{}
+  /*let demo = a => {
+    a+1;
+    console.log(a)
+  }
+  demo(1)*/
+  
+  //IIFE使用箭头函数
+  /*(()=>{
+    console.log('我是IIFE')
+  })()*/
+  
+  //定时器的回调
+  /*setTimeout(()=>{
+    console.log('定时器到点了')
+  },1000)*/
+  
+  //箭头函数定义DOM事件的回调
+  /*let btn = document.getElementById('btn')
+  btn.onclick = ()=>{
+    console.log('我被点击了')
+  }*/
+  
+  let demo = ()=>{
+    console.log(this)
+  }
+  demo()
+  
+  
+</script>
+</body>
+</html>
