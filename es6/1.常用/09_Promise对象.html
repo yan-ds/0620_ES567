@@ -54,28 +54,34 @@
   var btn = document.getElementById('btn')
   btn.onclick = ()=>{
     
-    //如下代码就叫做“回调地狱”
-    //发送第一次请求
+    /*需求：
+      有4次请求，要求如下：
+          第1次请求的数据回来后，再发送第2次；
+          第2次请求的数据回来后，再发送第3次；
+          第3次请求的数据回来后，再发送第4次；
+    */
+    
+    //如下代码中层层嵌套的回调函数就叫做“回调地狱”
+    //发送第1次请求
     sendAjax(1,function(a){
       console.log(a)
-      //发送第一次请求
+      //第1次数据回来后，再发送第2次请求
       sendAjax(2,function(a){
         console.log(a)
-        //发送第一次请求
+        //第2次数据回来后，再发送第3次请求
         sendAjax(3,function(a){
           console.log(a)
-          //发送第一次请求
+          //第3次数据回来后，再发送第4次请求
           sendAjax(4,function(a){
             console.log(a)
           })
         })
       })
     })
-    
   }
   
   
-  //模拟发送Ajax请求
+  //模拟发送Ajax请求的函数，传递两个参数：1.发送请求的编号id；2.回调函数
   function sendAjax(id,fn) {
     setTimeout(function () {
       fn(`我是第${id}次请求回来的数据`)
