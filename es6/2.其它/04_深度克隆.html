@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>对象的深度克隆</title>
+</head>
+<body>
+<!--
+  1、数据类型：
+    * 数据类型分为：
+        -基本的数据类型(String, Number, boolean, Null, Undefined, Symbol)
+            特点： 存储的是该类型的真实值
+        -对象数据类型
+            特点： 存储的是该对象在堆内存中的地址
+      
+  2、复制数据：
+    - 基本数据类型存放的就是实际的数据，可直接复制
+      let number2 = 2;
+      let number1 = number2;
+      
+    - 克隆数据：对象/数组
+      1、判断： 是否在堆里创建了新的对象。
+         分类： 浅克隆 与 深克隆。
+         知识点：对象数据存放的是对象在堆内存的地址，若直接复制，复制的是地址。
+         let obj = {username: 'kobe'}
+         let obj1 = obj; //obj1复制了obj在堆内存的地址值，obj1和obj都指向一个对象
+         
+      2、常用的拷贝(复制)技术:
+        1). arr.concat(): 数组浅拷贝
+        2). arr.slice(): 数组浅拷贝
+        3). JSON.parse(JSON.stringify(arr/obj)): 数组或对象深拷贝, 但不能处理函数数据,使用场景是对象里不包含函数
+        4). 浅拷贝包含函数数据的对象/数组
+        5). 深拷贝包含函数数据的对象/数组
+
+      3、扩展：如何做到精准判断数据类型？
+
+-->
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
