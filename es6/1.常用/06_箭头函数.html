@@ -99,13 +99,20 @@
   demo1.call({m:1,n:2})*/
   
   //不能用箭头函数去定义构造函数，没有自己的this，没有原型对象
-  let Person = (name,age) => {
+  /*let Person = (name,age) => {
     this.name = name
     this.age = age
   }
   console.log(Person.prototype)
   let p = new Person('kobe',18)
-  console.log(p)
+  console.log(p)*/
+  
+  //特殊情况
+  /*'use strict'
+  setTimeout(function () {
+    console.log(this)
+  },1000)*/
+  
   
   
 </script>

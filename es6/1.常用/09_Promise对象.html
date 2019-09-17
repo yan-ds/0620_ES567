@@ -50,14 +50,14 @@
 
 <script type="text/javascript">
   //演示回调地狱
-   /*var btn = document.getElementById('btn')
+  var btn = document.getElementById('btn')
   btn.onclick = ()=>{
-    /!*需求：
+    /*需求：
       有4次请求，要求如下：
           第1次请求的数据回来后，再发送第2次；
           第2次请求的数据回来后，再发送第3次；
           第3次请求的数据回来后，再发送第4次；
-    *!/
+    */
     //如下代码中层层嵌套的回调函数就叫做“回调地狱”
     //发送第1次请求
     sendAjax(1,function(a){
@@ -83,23 +83,64 @@
     setTimeout(function () {
       fn(`我是第${id}次请求回来的数据`)
     },1000)
-  }*/
+  }
   
   //创建了一个Promise实例-------它是一个状态机(三种状态：初始化:pending、成功:resolved、失败:rejected)
-  let myPromise = new Promise(function (resolve,reject) {
+  /*let myPromise = new Promise(function (resolve,reject) {
     setTimeout(function () {
-      reject('由于xxx原因，请求出错了，错误代码为0001')
-    },2000)
-  })
+      resolve('我是一些数据')
+    },1000)
+  })*/
   
-  myPromise.then(function(data){
+  //第一种监测Promise实例状态的方式
+  /*myPromise.then(function(data){
     console.log('我成功了',data)
   },function(err){
     console.log('我失败了',err)
-  })
+  })*/
+  
+  //第二种监测Promise实例状态的方式
+  /*myPromise
+    .then(function(data){
+      console.log(1)
+      console.log(data)
+    }).catch(function(err){
+      console.log(err)
+    })*/
+  
+  //借助Promise解决回调地狱 ------ 如下代码是最初识的写法，用的相对较少
+  var btn = document.getElementById('btn')
+  btn.onclick = ()=>{
+    let result = sendAjax(1)//本行代码接收到的result是一个Promise实例，需要监测状态。
+    result
+      .then(function(data){
+        console.log(data)
+        return sendAjax(2)
+      })
+      .then(function (data) {
+        console.log(data)
+        return sendAjax(3)
+      })
+      .then(function (data) {
+        console.log(data)
+        return sendAjax(4)
+      })
+      .then(function (data) {
+        console.log(data)
+      })
+  }
   
   
-  
+  //模拟发送Ajax请求的函数，传递两个参数：1.发送请求的编号id；2.回调函数
+  function sendAjax(id) {
+    let myPromise = new Promise(function (resolve,reject) {
+      setTimeout(function () {
+        resolve(`我是第${id}次请求回来的数据`)
+      },1000)
+    })
+    return myPromise
+  }
+
   
   
   
