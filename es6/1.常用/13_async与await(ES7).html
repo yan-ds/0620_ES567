@@ -17,27 +17,45 @@
       }
   特点：
     1、不需要像Generator去调用next方法，遇到await等待，当前的异步操作完成后再往下执行。
-    2、语意上更为明确，使用简单，经临床验证，暂时没有任何副作用。
+    2、语意上更为明确，使用简单。
 
 -->
 <script type="text/javascript">
 
   //案例练习，需求：有4个异步任务，等第一个成功的执行了，之后再发送第二个，以此类推。
-  (async()=>{
-    console.log(await sendAjax(1));
-    console.log(await sendAjax(2));
-    console.log(await sendAjax(3));
-    console.log(await sendAjax(4));
+  /*(async function () {
+    let result =  await sendAjax(1)
+    console.log(1)
   })()
+
 
   //模拟发送Ajax请求的函数，传递两个参数：1.发送请求的编号id；2.回调函数
   function sendAjax(id) {
     return new Promise((resolve,reject)=> {
       setTimeout(()=>{
-        resolve(`我是第${id}次请求回来的数据`)
+        reject(`失败了`)
       },1000)
     })
-  }
+  }*/
+  
+  let myPromise = new Promise((resolve,reject)=>{
+      setTimeout(()=>{
+        resolve(1)
+      },2000)
+  })
+  
+  //async的“副作用”，一旦函数被async声明，函数的返回值一定包裹了一层promise
+    async function demo() {
+      await myPromise
+      return 1
+    }
+
+  (async()=>{
+    let result = await demo()
+    console.log(result)
+  })()
+ 
+  
 </script>
 </body>
 </html>
