@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>12_class</title>
+</head>
+<body>
+</body>
+<!--
+1. 通过 class 定义类
+2. 在类中通过constructor定义构造方法
+3. 通过new来创建类的实例
+4. 通过 extends 来实现类的继承
+5. 通过super调用父类的构造方法
+6. 重写从父类中继承的一般方法
+-->
+<script type="text/javascript">
+  
+  //定义一个人的构造函数
+  /*function Person(name,age) {
+    this.name = name
+    this.age = age
+  }
+  Person.haha = function () {
+    alert(1)
+  }
+  Person.prototype.speak = function () {
+    console.log(`我是${this.name}年龄是${this.age}`)
+  }
+  let p = new Person('kobe',18)
+  console.log(p)
+  Person.haha()*/
+  
+  //定义一个人类
+  /*
+  * 类里面能写什么样的代码?
+  *   1.static声明的方法
+  *   2.赋值语句，例如：a = b 给实例身上追加一个a属性，值为b
+  * */
+  class Person {
+    //构造器，完成类似于构造函数接收参数，且构造器里的this，一定是实例，所有自身特有的属性，放在自身
+    constructor(name,age){
+      this.name = name
+      this.age = age
+    }
+    //方法写在构造器外（公共的方法），实际上也是操作了原型链
+    speak(){
+      console.log(`我是${this.name}年龄是${this.age}`)
+    }
+    drive = function(){
+      console.log('我在开车')
+    }
+    static haha(){
+      console.log('哈哈')
+    }
+    a = 1 //给实例身上追加一个a属性，值为1
+  }
+  let p = new Person('kobe',18)
+  console.log(p)
+  p.drive()
+  
+  
+  //使用类更加方便的完成继承操作------底层操作的依然是原型链。
+  /*class Student extends Person{
+    constructor(name,age,grade){
+      //super用于帮助子类调用父类的构造器
+      super(name,age)
+      this.grade = grade
+    }
+    speak(){
+      console.log(`我是${this.name}年龄是${this.age},我的年级是${this.grade}`)
+    }
+  }
+  let s = new Student('wade',19,'大一')
+  console.log(s)
+  s.speak()*/
+
+</script>
+</html>
