@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>async函数</title>
+</head>
+<body>
+
+<!--
+  async函数(源自ES2016)
+  概念： 真正意义上去解决异步回调的问题，同步流程表达异步操作
+  本质： Generator函数的语法糖
+  语法：
+      async function foo(){
+        await Promise的实例;
+        await Promise的实例；
+      }
+  特点：
+    1、不需要像Generator去调用next方法，遇到await等待，当前的异步操作完成后再往下执行。
+    2、语意上更为明确，使用简单，经临床验证，暂时没有任何副作用。
+
+-->
+<script type="text/javascript">
+
+  //案例练习，需求：有4个异步任务，等第一个成功的执行了，之后再发送第二个，以此类推。
+  (async()=>{
+    console.log(await sendAjax(1));
+    console.log(await sendAjax(2));
+    console.log(await sendAjax(3));
+    console.log(await sendAjax(4));
+  })()
+
+  //模拟发送Ajax请求的函数，传递两个参数：1.发送请求的编号id；2.回调函数
+  function sendAjax(id) {
+    return new Promise((resolve,reject)=> {
+      setTimeout(()=>{
+        resolve(`我是第${id}次请求回来的数据`)
+      },1000)
+    })
+  }
+</script>
+</body>
+</html>
