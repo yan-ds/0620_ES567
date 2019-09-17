@@ -85,7 +85,7 @@
     },1000)
   }*/
   
-  //创建了一个Promise实例-------它是一个状态机(三种状态：初始化:pending、成功:resolved、失败:rejected)
+  //创建了一个Promise实例----它是一个状态机(三种状态：初始化:pending、成功:resolved、失败:rejected)
   /*let myPromise = new Promise(function (resolve,reject) {
     setTimeout(function () {
       resolve('我是一些数据')
@@ -112,38 +112,34 @@
   var btn = document.getElementById('btn')
   btn.onclick = ()=>{
     let result = sendAjax(1)//本行代码接收到的result是一个Promise实例，需要监测状态。
+    //Promise实例的then方法，默认返回值是：Promise实例，且状态为成功
     result
       .then(function(data){
-        console.log(data)
-        return sendAjax(2)
+        console.log(data)//第1次请求回来的数据
+        return sendAjax(2)//发送第2次请求
       })
       .then(function (data) {
-        console.log(data)
-        return sendAjax(3)
+        console.log(data)//第2次请求回来的数据
+        return sendAjax(3)//发送第3次请求
       })
       .then(function (data) {
-        console.log(data)
-        return sendAjax(4)
+        console.log(data)//第3次请求回来的数据
+        return sendAjax(4)//发送第4次请求
       })
       .then(function (data) {
-        console.log(data)
+        console.log(data)//第4次请求回来的数据
       })
   }
   
   
   //模拟发送Ajax请求的函数，传递两个参数：1.发送请求的编号id；2.回调函数
   function sendAjax(id) {
-    let myPromise = new Promise(function (resolve,reject) {
-      setTimeout(function () {
+    return new Promise((resolve,reject)=> {
+      setTimeout(()=>{
         resolve(`我是第${id}次请求回来的数据`)
       },1000)
     })
-    return myPromise
   }
-
-  
-  
-  
   
   
 </script>

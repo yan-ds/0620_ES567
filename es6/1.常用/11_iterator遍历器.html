@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Iterator遍历器</title>
+</head>
+<body>
+  <!--
+    概念：iterator是一个内置接口，主要服务于遍历器(...和 for of)
+    作用：
+      1、ES6创造了一种新的遍历命令:for of，并且for of底层依赖iterator接口实现的遍历
+      2、三点运算符、for of在遍历的时候，依赖于iterator
+      
+    iterator遍历器工作原理：
+      - 创建一个指针对象(遍历器对象)，指向数据结构的起始位置。
+      - 每次调用指针对象中的next方法，指针自动向后移动。
+      - 不断调用next方法，指针会一直往后移动，直到指向最后一个成员。
+      - 每调用next方法返回的是一个包含value和done的对象，{value: 当前成员的值,done: 布尔值}
+        * value表示当前成员的值，done对应的布尔值表示当前的数据的结构是否遍历结束。
+        * 当遍历结束的时候返回的value值是undefined，done值为true
+        
+    原生具备iterator接口的数据(即：可以用for of遍历)
+      1、Array
+      2、arguments
+      3、String
+      ...
+  -->
+
+<script type="text/javascript">
+  
+  let arr = [2,4,6,8,10]
+  let obj = {m:1,n:2}
+  let str = 'hello atguigu'
+  
+  //for in 遍历数组
+  /* for (let index in arr){
+     console.log(arr[index])
+  }*/
+  
+  //for in 遍历对象
+  /*for (let key in obj){
+    console.log(obj[key])
+  }*/
+  
+  //for in 遍历字符串
+  /*for (let a in str){
+    console.log(str[a])
+  }*/
+  
+  //for of 遍历数组
+  /*for (let item of arr){
+     console.log(item)
+  }*/
+
+  //for of 不能遍历对象！！！！
+  /*for (let item of obj){
+    console.log(item)
+  }*/
+  
+  /*
+      - 创建一个指针对象(遍历器对象)，指向数据结构的起始位置。
+      - 每次调用指针对象中的next方法，指针自动向后移动。
+      - 不断调用next方法，指针会一直往后移动，直到指向最后一个成员。
+      - 每调用next方法返回的是一个包含value和done的对象，{value: 当前成员的值,done: 布尔值}
+        * value表示当前成员的值，done对应的布尔值表示当前的数据的结构是否遍历结束。
+        * 当遍历结束的时候返回的value值是undefined，done值为true
+   */
+  
+  //自定义一个遍历器
+  function mockIterator() {
+    let index = 0
+    let that = this //缓存this
+    return {
+      next:function () {
+        return {
+          value:that[index++],
+          done:index-1 < that.length ? false :true
+        }
+      }
+    }
+  }
+  
+  /*let point = mockIterator.call(arr)
+  console.log(point.next());
+  console.log(point.next());
+  console.log(point.next());
+  console.log(point.next());
+  console.log(point.next());
+  console.log(point.next());*/
+  
+  Array.prototype[Symbol.iterator] = mockIterator
+  console.log(...arr)
+  for (let item of arr){
+     console.log(item)
+  }
+
+</script>
+</body>
+</html>
